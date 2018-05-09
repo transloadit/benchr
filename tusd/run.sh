@@ -129,7 +129,11 @@ if [ "${scenario}" = "1" ]; then
   sleep 0.5 1>&2
   node "${tusJsClientBin}"
 elif [ "${scenario}" = "2" ]; then
-  echo "scenario 2" 1>&2
+  # for instance, set different tcp window size here
+  "${tusdBin}" -dir "${tusdDataDir}" 1>&2 &
+  tusdPid=${?}
+  sleep 0.5 1>&2
+  node "${tusJsClientBin}"
 else
   echo "Unkown scenario: '${scenario}'" 1>&2
   exit 1
