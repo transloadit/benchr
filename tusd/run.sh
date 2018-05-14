@@ -23,16 +23,16 @@ tusdDataDir="/tmp/benchr/data"
 tusJsClientVersion=${TUSJSCLIENT_VERSION:-v1.5.1}
 tusJsClientSource="releases"
 if [[ "${OSTYPE}" = "darwin"* ]]; then
-  arch="darwin_amd64"
+  arch="darwin_amd64.zip"
 else
-  arch="linux_amd64"
+  arch="linux_amd64.tar.gz"
 fi
 
 mkdir -p /tmp/benchr
 pushd /tmp/benchr 1>&2
   # Install tusd if needed
   if [ "${tusdSource}" = "releases" ]; then
-    [ -f "tusd_${arch}.zip" ] || wget "https://github.com/tus/tusd/releases/download/${tusdVersion}/tusd_${arch}.zip"
+    [ -f "tusd_${arch}.zip" ] || wget "https://github.com/tus/tusd/releases/download/${tusdVersion}/tusd_${arch}"
     [ -f "${PWD}/tusd_${arch}/tusd" ] || unzip "tusd_${arch}.zip"
     tusdBin="${PWD}/tusd_${arch}/tusd"
   elif [ "${tusdSource}" = "git" ]; then
